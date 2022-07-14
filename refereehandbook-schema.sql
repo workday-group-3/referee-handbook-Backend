@@ -100,10 +100,10 @@ VALUES (5,
             Points are decided as described above and games must be won by two clear points. At 10-10 each player serves once only, in turn, until one player established a two point lead and wins the game.
             After each game the players rotate both the end of the table from which they are playing as well as who serves and receives the ball first.
             In the deciding game of a match the players swap ends after either player reaches five points.', 
-        'Table tennis has been an Olympic sport since 1988 and is hugely popular in Asia, although it is played all over the world from the dusty streets of Ethiopia to the public schools of rural England. The game did indeed begin in England at the end of the 19th century, first as a postprandial parlour game for upper classes. The sound of the ball on early bats gave it the name “ping pong” but as this became a trademarked term in some countries table tennis soon became the more common name.', 
+        'Table tennis has been an Olympic sport since 1988 and is hugely popular in Asia, although it is played all over the world from the dusty streets of Ethiopia to the public schools of rural England. The game did indeed begin in England at the end of the 19th century, first as a postprandial parlour game for upper classes. The sound of the ball on early bats gave it the name `ping pong` but as this became a trademarked term in some countries table tennis soon became the more common name.', 
         'https://images.nbcolympics.com/sites/default/files/2021-03/Oly-16x9-Table-Tennis.png', 
         'https://www.youtube.com/watch?v=phXqTy5MbhI', 
-        'https://c8.alamy.com/zooms/9/eff026c102fb4ef1be3610155665e563/2c5n8jm.jpg' );
+        'https://c8.alamy.com/zooms/9/eff026c102fb4ef1be3610155665e563/2c5n8jm.jpg');
 
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (6, 
