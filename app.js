@@ -3,6 +3,9 @@ const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 
+//create routes
+const learningRoutes = require("./routes/learning")
+
 //import errors
 const { BadRequestError, NotFoundError } = require("./utils/errors")
 
@@ -12,6 +15,9 @@ const app = express()
 app.use(cors()) //enable cross origin sharing
 app.use(express.json()) //parse incoming request bodies with JSON payloads
 app.use(morgan("tiny")) // Log request info
+
+//Assign routes
+app.use("/learning", learningRoutes)
 
 
 // health check 
