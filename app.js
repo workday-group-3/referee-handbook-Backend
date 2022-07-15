@@ -3,11 +3,16 @@ const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 
+//import errors & security
+const security = require("./middleware/security")
+const { NotFoundError } = require("./utils/errors")
+
+
 //create routes
+const authRoutes = require("./routes/auth")
 const learningRoutes = require("./routes/learning")
 
-//import errors
-const { BadRequestError, NotFoundError } = require("./utils/errors")
+
 
 const app = express()
 
@@ -16,7 +21,15 @@ app.use(cors()) //enable cross origin sharing
 app.use(express.json()) //parse incoming request bodies with JSON payloads
 app.use(morgan("tiny")) // Log request info
 
+
+//for every request, check if a token exists in the authorization header
+//if it does, attach the decoded user to res.locals
+app.use(security.extractUserFromJwt)
+
+
+
 //Assign routes
+app.use("/auth", authRoutes)
 app.use("/learning", learningRoutes)
 
 
