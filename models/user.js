@@ -87,7 +87,7 @@ class User {
         VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING id, email, username, password, first_name, last_name, location, profile_image_URL, created_at;
     
-    `, [lowercasedEmail, credentials.username, hashedPassword, credentials.firstName, credentials.lastName,  credentials.location, credentials.profileImageUrl])
+    `, [lowercasedEmail, credentials.username, hashedPassword, credentials.firstName, credentials.lastName,  credentials.location, credentials.profileImageURL])
 
     const user = result.rows[0]
     return User.makePublicUser(user)
