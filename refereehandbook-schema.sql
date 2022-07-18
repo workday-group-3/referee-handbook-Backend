@@ -43,7 +43,7 @@ VALUES (1,
             {b} For fouls committed a player could receive either a yellow or red card depending on the severity of the foul; this comes down to the referee`s discretion. The yellow is a warning and a red card is a dismissal of that player. Two yellow cards will equal one red. Once a player is sent off then they cannot be replaced.
             {b} If a ball goes out of play off an opponent in either of the side lines then it is given as a throw in. If it goes out of play off an attacking player on the base line then it is a goal kick. If it comes off a defending player it is a corner kick.', 
         'Football (Soccer) is one of the oldest sports in the world and with that; it`s also one of the most recognised. The pinnacle of the international game comes in the form the Football World Cup.  Domestically the strongest leagues come from England (English Premier League), Spain (La Liga), Italy (Serie A) and Germany (Bundesliga). ', 
-        'https://media.npr.org/assets/img/2022/06/06/ap22156795241469_custom-ac5673971ad7b73fb5af7e3c0605d08abc59f80e-s1100-c50.jpg', 
+        'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80', 
         'https://www.youtube.com/embed/qknP-E-vPQ4', 
         'https://www.soccerdrive.com/sites/SoccerDrive2-0/files/soccer-field-diagram-with-lines.jpg' );
 
@@ -60,31 +60,28 @@ VALUES (2,
             {b} Fouls committed throughout the game will be accumulated and then when reached a certain number will be eventually be awarded as a free throw. A free throw involves one playerfrom the offensive team (the player fouled) to take a shot unopposed from the free throw line. Depending on where the foul was committed will depend on the number free throws a player gets.
             {b} Violations in basketball include travelling (taking more than one step without bouncing the ball), double dribble (picking the ball up dribbling, stopping then dribbling again with two hands), goaltending (a defensive player interferes with the ball travelling downwards towards the basket) and back court violation (once the ball passes the half way line the offensive team cannot take the ball back over the half way line).', 
         'Basketball dates back as far as 1891 and since then has evolved into a sport played around the world. Many countries have adopted the game such as Russia, Great Britain, Germany, Spain and parts of Asia, but it is America where the biggest and most lucrative league in the world lives: the NBA (National Basketball Association).', 
-        'https://static01.nyt.com/images/2020/03/11/sports/11virus-leagues-curry2/merlin_170213634_6955db75-0fa6-476b-b75d-9f63826e296a-mobileMasterAt3x.jpg', 
+        'https://images.unsplash.com/photo-1641133106402-cb7ab676b7bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
         'https://www.youtube.com/embed/F6VLIExnc7Q', 
         'https://www.harrodsport.com/uploads/wysiwyg/img/basketball-court-dimensions-and-markings-in-feet-720x444.png' );
 
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (3, 
-        'Tennis', 
+        'Baseball', 
         'timeline Url', 
-        '{b} The game starts with a coin toss to determine which player must serve first and which side they want to serve from.
-            {b} The server must then serve each point from alternative sides on the base line. At no point must the server`s feet move in front of the baseline on the court prior to hitting their serve.
-            {b} If the server fails to get their first serve in they may take advantage of a second serve. If they again fail to get their second serve in then a double fault will be called and the point lost.
-            {b} If the server clips the net but the ball goes in the service area still then let is called and they get to take that serve again without penalty. If the ball hits the net and fails to go in the service area then out is called and they lose that serve.
-            {b} The receiver may stand where they wish upon receipt of the serve. If the ball is struck without the serve bouncing then the server will receive the point.
-            {b} Once a serve has been made the amount of shots between the players can be unlimited. The point is won by hitting the ball so the opponent fails to return it in the scoring areas.
-            {b} Points are awarded in scores of 15, 30 and 40. 15 represent 1 point, 30 = 2 and 40 = 3. You
-            {b} need 4 points to win a game. If a game lands on 40-40 it`s known as deuce. From deuce a player needs to win 2 consecutive points to win the game. After winning one point from deuce they player is on advantage. If the player wins the next point they win the game, if they lose it goes back to deuce.
-            {b} To win the set a player must win 6 games by 2 or more. The opening sets will go to a tie break if its ends up 6-6 where players play first to 7 points. The final set will not have a tie break and requires players to win by two games with no limits.
-            {b} If a player touches the net, distracts his opponent or impedes in anyway then they automatically lose the point.
-            {b} The ball can hit any part of the line for the point to be called in, outside the line and the ball is out.
-            {b} The balls in a tennis match are changed for new balls every 6 games
-            {b} A player loses a point if they fail to return the ball in either the correct areas on the court, hits the net and doesn`t go into opponent`s area or fails to return the ball before it bounces twice in their half.', 
-        'Tennis is a sport that originated in England around the 19th century and is now played in a host of countries around the world. There are four major tournaments known as the ‘majors` that include Wimbledon, US Open, French Open and Australian tournament.', 
-        'https://www.gannett-cdn.com/presto/2022/07/08/USAT/1b23164d-daf1-4bbe-aa3a-41c72a00f987-djoker.jpg?crop=1922,1081,x0,y40&width=660&height=370&format=pjpg&auto=webp', 
-        'https://www.youtube.com/embed/S9DnaBlhlVI', 
-        'https://www.harrodsport.com/uploads/wysiwyg/img/doubles-tennis-court-dimensions-598x381.png' );
+        '{b} Baseball has two teams of 9 players.
+            {b} The fielding team’s positions are made up of a pitcher, catcher, first baseman, second baseman, shortstop, third baseman, and three outfielders at left field, centre field and right field.
+            {b} Games last for 9 innings of which both teams get to bat once. If the game is a tie after 9 innings then an extra inning will be added until a winner is found. If the team batting second in the bottom of the 9th inning are already ahead in points, then they do not need to complete their batting innings.
+            {b} Once a batting order is picked, then it cannot be changed throughout the game. Substitutes are permitted, however, they must bat in the order of the previous player whom they replaced.
+            {b} If the batter manages to hit the ball from the pitcher, they must make an effort to at least get to first base. They can then run to as many bases as they wish before being tagged out. Each base must be touched with some part of the batters body when running past.
+            {b} A batter gets up to three strikes before getting out. A strike is deemed when a batter swings for a ball and misses it. The batter can leave the ball but, if it’s within a certain area (called the strike zone), then a strike will also be given. If four balls miss the strike zone and the batter does not swing their bat, they can walk to first base.
+            {b} When on base, the batter can run to the next base at any point.
+            {b} Players can be dismissed by either a strike out (referring to a batsman missing the ball three times), force out (when a player fails to make the base before the defensive player), fly out (when the ball is hit in the air and caught without it bouncing), and 'tag outs' (where a defensive player with the ball tags the batsman with the ball all whilst they are running).', 
+        'Baseball is a sport that dates back as far as 1744 and formats of the game have been in place until the modern era today. The game is predominantly big in North America, Canada and Japan. The game is played worldwide with the pinnacle of sport coming from the World Series of Baseball. Ironically, this event is only competed by North American teams.', 
+        'https://images.unsplash.com/photo-1578432014316-48b448d79d57?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+        'https://www.youtube.com/embed/I8VGW0C_GO4', 
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Baseball_positions.svg/2256px-Baseball_positions.svg.png' );
+
+
 
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (4, 
@@ -96,47 +93,47 @@ VALUES (4,
             {b} A minor penalty can include tripping an opponent with their stick, holding with either their stick or hands, hooking with their stick or body checking a player without the puck.
             {b} Major penalties will result in a player being removed from the ice for up to 5 minutes. These may include fighting, inflicting serious injury on opposing players or continued minor violations.', 
         'The origins of ice hockey date back to the 19th century in Canada where adaptations of the modern day hockey game were played in icy conditions. Since then the sport has gone on to become one of the largest in the world with the major participants originating from North America. The NHL (National Hockey League) is the largest league in the world.', 
-        'https://cdn.ontariohockeyleague.com/uploads/ohl/2022/07/13233806/July13WintertonSeattle-730x428.jpg', 
+        'https://images.unsplash.com/photo-1578535230289-3935f0a945f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
         'https://www.youtube.com/embed/H_70vAiyyXM', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ice_hockey_layout.svg/1200px-Ice_hockey_layout.svg.png' );
 
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (5, 
-        'Ping Pong', 
+        'Volleyball', 
         'timeline Url', 
-        '{b} Ping pong is played over a pre-agreed number of games and the first to 11 points wins each game.
-            {b} The toss of a coin or another form of lot-drawing determines which of the players shall serve first.
-            {b} Each table tennis player serves twice in turn and serves must be made from an open palm, the ball tossed six inches then struck so it bounces on the service side, clears the net, then bounces on the receiver`s side.
-            {b} Points are decided as described above and games must be won by two clear points. At 10-10 each player serves once only, in turn, until one player established a two point lead and wins the game.
-            {b} After each game the players rotate both the end of the table from which they are playing as well as who serves and receives the ball first.
-            {b} In the deciding game of a match the players swap ends after either player reaches five points.', 
-        'Table tennis has been an Olympic sport since 1988 and is hugely popular in Asia, although it is played all over the world from the dusty streets of Ethiopia to the public schools of rural England. The game did indeed begin in England at the end of the 19th century, first as a postprandial parlour game for upper classes. ', 
-        'https://images.nbcolympics.com/sites/default/files/2021-03/Oly-16x9-Table-Tennis.png', 
-        'https://www.youtube.com/embed/phXqTy5MbhI', 
-        'https://c8.alamy.com/zooms/9/eff026c102fb4ef1be3610155665e563/2c5n8jm.jpg');
+        '{b} Each team consist of 6 players and 6 substitutes. Players can be substituted at any time but if they are to return can only be swapped for the player that replaced them.
+         {b} Each team can hit the ball up to three times before the ball must be returned. The defensive team can then try and block or return the ball again hitting it a maximum of three times.
+         {b} Games are played up to 25 points and must be won by 2 clear points.
+         {b} Violations will be called for the following:
+            {b} Stepping over the base line when serving the ball.
+            {b} Ball hits the net and fails to get over the net (If the ball hits the net and still goes over the net then this is perfectly legal).
+            {b} Players are not allowed to carry, palm or run with the ball.
+            {b} Players must not touch the net with any part of the body. If the net is said to have hit them rather than vice-versa, then this is ok.
+            {b} The ball cannot travel under the net.
+            {b} Players cannot reach over the net and hit the ball.', 
+        'Variations of the game volleyball have been in circulation since around 1895. The game has evolved since then and it was in 1964 where the sport entered its first Olympic games. The sport now has a global following with nations from around the world professionally competing. The pinnacle of the sport comes in the Olympic Games were the best players are often on show.',
+        'https://images.unsplash.com/photo-1553005746-9245ba190489?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+        'https://www.youtube.com/embed/9YvP2-YbIFs', 
+        'https://homenish.com/wp-content/uploads/2021/05/Indoor-Volleyball-Court-Dimensions.jpg');
 
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (6, 
-        'Badminton', 
+        'Rugby', 
         'timeline Url', 
-        '{b} A game can take place with either two (singles) or four (doubles) players.
-            {b} An official match has to be played indoors on the proper court dimensions. The dimensions are 6.1m by 13.4m, The net is situated through the middle of the court and is set at 1.55m.
-            {b} To score a point the shuttlecock must hit within the parameters of the opponents court.
-            {b} If the shuttlecock hits the net or lands out then a point is awarded to your opponent.
-            {b} Players must serve diagonally across the net to their opponent. As points are won then serving stations move from one side to the other. There are no second serves so if your first serve goes out then your opponent wins the point.
-            {b} A serve must be hit underarm and below the servers waist. No overarm serves are allowed.
-            {b} Each game will start with a toss to determine which player will serve first and which side of the court the opponent would like to start from.
-            {b} Once the shuttlecock is ‘live` then a player may move around the court as they wish. They are permitted to hit the shuttlecock from out of the playing area.
-            {b} If a player touches the net with any part of their body or racket then it is deemed a fault and their opponent receives the point.
-            {b} A fault is also called if a player deliberately distracts their opponent, the shuttlecock is caught in the racket then flung, the shuttlecock is hit twice or if the player continues to infract with the laws of badminton.
-            {b} Each game is umpired by a referee on a high chair who overlooks the game. There are also line judges who monitor if the shuttlecock lands in or not. The referee has overriding calls on infringements and faults.
-            {b} Let may be called by the referee if an unforeseen or accidental circumstance arose. These may include the shuttlecock getting stuck in the bet, server serving out of turn, one player was not ready or a decision which is too close to call.
-            {b} The game has only two rest periods coming the form of a 90 second rest after the first game and a 5 minute rest period after the second game.
-            {b} If the laws are continuously broken by a player then the referee holds the power to dock that player of points with persisting fouls receiving a forfeit of the set or even the match.', 
-        'Badminton is a sport that has been around since the 16th century. The sport is played indoors and the pinnacle comes from its Olympic events. The sport is very popular in Asian countries such as China and India with these countries leading the way by producing some of the world`s best players.', 
-        'https://images.unsplash.com/photo-1595220427358-8cf2ce3d7f89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmFkbWludG9uJTIwZ2FtZXxlbnwwfHwwfHw%3D&w=1000&q=80', 
-        'https://www.youtube.com/embed/tAS7rOKtpgQ', 
-        'https://badmintonisgreat.com/wp-content/uploads/2020/04/Phase-6.png' );
+        '{b} The game is broken down into two 40 minute halves with a 10 minute rest period in between. The game carries no stoppage time and will end exactly on 80 minutes.
+            {b} Each team can start with 15 players and up to 7 substitutes. Players that have left the field are only allowed to return if they have been treated for an injury.
+            {b} The field must be roughly 100 metres long and 70 metres wide with a minimum of a 10 metre dead ball area. The H shaped goal needs to be 6 metres wide with no restrictions on height.
+            {b} The field consist of the following markings; half way line, 5 metre line, 22 metre line, 10 metre line and dead ball line. Also included is a centre spot for restarting the game after a try, penalty or drop goal has been scored.
+            {b} The game must have one referee and two touch judges. It’s the referee’s job to time keep, make decisions throughout the game and keep order on the field. The two touch judges can assist the referee with decisions and also notify the referee when players are in touch (out of playing boundaries).
+            {b} The game will stop if a player is fouled, the ball goes out of play or a try or drop goal is scored.
+            {b} The defending team must tackle a player by grabbing a hold and pulling them to the floor. A tackle cannot be made above shoulder height and doing so will cause the referee to award a foul.
+            {b} Once the ball goes into touch a line out is called. Up to 7 players can enter a line out and any of these players can be lifted in order to catch the ball being thrown in. Both teams can compete to win the ball.
+            {b} A successful conversion, penalty or kick at goal only occurs when the player manages to kick the ball through the top section of the goal. If a player is unsuccessful the ball is still in play until it crosses one of the playing fields boundaries.
+            {b} Attacking players must remain behind the ball whilst active or run the risk of being called offside. Players not interfering with play can be in front of ball but must get back behind the ball before then again interfering with play.', 
+        'Rugby is one of the most physical of sports. Internationally the pinnacle of the sport lies in the Rugby World Cup. Other tournaments such as the Tri Nations (including South Africa, New Zealand and Australia), Six Nations (including England, Ireland, Scotland, Wales, Italy and France) and the Heineken Cup are other tournaments which are held in high esteem throughout.', 
+        'https://images.unsplash.com/photo-1574618471715-61c6b64aaf31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+        'https://www.youtube.com/embed/F22A_V77Tic', 
+        'https://i0.wp.com/texasrugbyunion.com/wp-content/uploads/2015/09/Technical-Zones-Diagram-rugby-field.png?ssl=1' );
 
 -----------------------------------------------------------------------------
 -- CREATE TABLE UserCreatedCourses (
