@@ -30,7 +30,7 @@ CREATE TABLE BeginnerCourses (
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (1, 
         'Soccer', 
-        'timeline Url', 
+        'https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1fw5JoZ32k1MHvxfKkytrN4OFl5lMguSk9hz90wBBBwg&font=Default&lang=en&initial_zoom=2', 
         '{b} A match consists of two 45 minutes halves with a 15 minute rest period in between.  
             {b} Each team can have a minimum off 11 players (including 1 goalkeeper who is the only player allowed to handle the ball within the 18 yard box) and a minimum of 7 players are needed to constitute a match.
             {b} The field must be made of either artificial or natural grass. The size of pitches is allowed to vary but must be within 100-130 yards long and 50-100 yards wide. The pitch must also be marked with a rectangular shape around the outside showing out of bounds, two six yard boxes, two 18 yard boxes and a centre circle. A spot for a penalty placed 12 yards out of both goals and centre circle must also be visible.
@@ -50,7 +50,7 @@ VALUES (1,
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (2, 
         'Basketball', 
-        'timeline Url', 
+        'https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1PvgbDApRf6SEUkAU97myrVse_20EzCEO_HRtsETwceM&font=Default&lang=en&initial_zoom=2', 
         '{b} Each team can have a maximum of 5 players on the court at any one time. Substitutions can be made as many times as they wish within the game.
             {b} The ball can only be moved by either dribbling (bouncing the ball) or passing the ball. Once a player puts two hands on the ball (not including catching the ball) they cannot then dribble or move with the ball and the ball must be passed or shot.
             {b} After the ball goes into a team`s half and they win possession back the ball must then make it back over the half way line within 10 seconds. If the ball fails to do so then a foul will be called and the ball will be turned over.
@@ -67,7 +67,7 @@ VALUES (2,
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (3, 
         'Baseball', 
-        'timeline Url', 
+        'https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1_xfC4oYD7mlNwhoZ60_lDqWpPqBR4fyCzeXhZ_qdEhk&font=Default&lang=en&initial_zoom=2', 
         '{b} Baseball has two teams of 9 players.
             {b} The fielding team’s positions are made up of a pitcher, catcher, first baseman, second baseman, shortstop, third baseman, and three outfielders at left field, centre field and right field.
             {b} Games last for 9 innings of which both teams get to bat once. If the game is a tie after 9 innings then an extra inning will be added until a winner is found. If the team batting second in the bottom of the 9th inning are already ahead in points, then they do not need to complete their batting innings.
@@ -86,7 +86,7 @@ VALUES (3,
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (4, 
         'Hockey', 
-        'timeline Url', 
+        'https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1y5cOLs1BzmvIBckDV1GTZFyhnT4hLxRdkQJcT_zxKcg&font=Default&lang=en&initial_zoom=2', 
         '{b} The game starts in the centre circle with a face off. This is where the referee drops the puck in between two opposing players who then scrap to win position for their team. A faceoff may also be used to resume play after a stoppage in any of the attacking or defending face off zones.
             {b} Players may use physical force to win the puck off their opponent. Body checking can be used but is not prohibited in the back or above shoulder height.
             {b} Players who are imposed to have committed a minor penalty will be ordered to leave the ice for two minutes and their team play with 5 players for that duration. If the opposing team score a goal within those two minutes then that player can return to the rink immediately.
@@ -100,7 +100,7 @@ VALUES (4,
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (5, 
         'Volleyball', 
-        'timeline Url', 
+        'https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1r10YN6UYeytDANLa29ZbUmJr8eyyh1FzkQ4ttM0R0j8&font=Default&lang=en&initial_zoom=2', 
         '{b} Each team consist of 6 players and 6 substitutes. Players can be substituted at any time but if they are to return can only be swapped for the player that replaced them.
          {b} Each team can hit the ball up to three times before the ball must be returned. The defensive team can then try and block or return the ball again hitting it a maximum of three times.
          {b} Games are played up to 25 points and must be won by 2 clear points.
@@ -119,7 +119,7 @@ VALUES (5,
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (6, 
         'Rugby', 
-        'timeline Url', 
+        'https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1NclXnX1YRZfUlWjanC8edc5iYcZYmMBVMIegMKrs3og&font=Default&lang=en&initial_zoom=2', 
         '{b} The game is broken down into two 40 minute halves with a 10 minute rest period in between. The game carries no stoppage time and will end exactly on 80 minutes.
             {b} Each team can start with 15 players and up to 7 substitutes. Players that have left the field are only allowed to return if they have been treated for an injury.
             {b} The field must be roughly 100 metres long and 70 metres wide with a minimum of a 10 metre dead ball area. The H shaped goal needs to be 6 metres wide with no restrictions on height.
