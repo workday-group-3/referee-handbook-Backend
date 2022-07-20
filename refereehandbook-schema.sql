@@ -135,19 +135,19 @@ VALUES (6,
         'https://www.youtube.com/embed/F22A_V77Tic', 
         'https://i0.wp.com/texasrugbyunion.com/wp-content/uploads/2015/09/Technical-Zones-Diagram-rugby-field.png?ssl=1' );
 
------------------------------------------------------------------------------
--- CREATE TABLE UserCreatedCourses (
---     id                          SERIAL PRIMARY KEY,
---     sport_name                  TEXT NOT NULL,
---     user_id                  INTEGER NOT NULL,
---     course_title                TEXT NOT NULL,
---     course_short_description    TEXT NOT NULL,
---     course_cover_image_URL 	    TEXT NOT NULL,
---     course_content              TEXT NOT NULL,
---     course_tutorial_video_URL   TEXT NOT NULL,
---     course_tips_tricks          TEXT NOT NULL,
---     FOREIGN KEY (user_id) REFERENCES users(id),
---     created_at                  TIMESTAMP NOT NULL DEFAULT NOW()
--- )
+------------------------CREATE AND STORE ALL USER CREATED COURSES-----------------------------------------------------
+CREATE TABLE UserCreatedCourses (
+    id                          SERIAL PRIMARY KEY,
+    sport_name                  TEXT NOT NULL,
+    user_id                     INTEGER NOT NULL,
+    course_title                TEXT NOT NULL,
+    course_short_description    TEXT NOT NULL,
+    course_cover_image_URL 	    TEXT NOT NULL,
+    course_content              TEXT NOT NULL,
+    course_tutorial_video_URL   TEXT NOT NULL,
+    course_tips_tricks          TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    created_at                  TIMESTAMP NOT NULL DEFAULT NOW()
+)
 
 
