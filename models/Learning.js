@@ -36,6 +36,88 @@ class Learning {
         return sports;
 
     }
+
+
+    static async createNewCourse({course, user}) {
+
+
+        //error checking to see if form is missing any required parameters
+        const requiredFields = ["sportName", "courseName", "shortDescription", "detailedDescription", "tutorialVideoURL", "coverImageURL", "tipsAndTricks"]
+        requiredFields.forEach(field => {
+            if (!course.hasOwnProperty(field)){
+                throw new BadRequestError(`Missing ${field} field.`)
+            }
+        })
+
+        //inserting course entry into db
+        const results = await db.query(`
+            INSERT INTO UserCreatedCourses (
+                sport_name,
+                course_title,
+                course_short_description,
+                course_content,
+                course_cover_image_URL,
+                course_tutorial_video_URL,
+                course_tips_tricks,
+                user_id
+                )
+                VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT id FROM users WHERE email = $8))
+                RETURNING id,
+                          sport_name
+                          course_title,
+                          course_short_description,
+                          course_content,
+                          course_cover_image_URL,
+                          course_tutorial_video_URL,
+                          course_tips_tricks,
+                          user_id,
+                          created_at
+
+        
+        `, [course.sportName, course.courseName, course.shortDescription, course.detailedDescription, course.tutorialVideoURL, course.coverImageURL, course.tipsAndTricks, user.email])
+
+        return results.rows[0]
+    }
+
+
+
+    static async listUserCoursesBySport(sportname) {
+
+        //pull all user created courses from database that satisfy the sportName parameter
+        const results = await db.query(`
+            SELECT c.course_title,
+                c.course_short_description,
+                c.course_content,
+                c.course_cover_image_URL,
+                c.course_tutorial_video_URL,
+                c.course_tips_tricks,
+                c.created_at
+            FROM UserCreatedCourses AS c
+            WHERE c.sport_name = $1
+            ORDER BY c.created_at DESC
+        `, [sportname])
+
+        return results.rows
+   
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 module.exports = Learning
