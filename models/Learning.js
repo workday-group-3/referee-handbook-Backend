@@ -74,7 +74,7 @@ class Learning {
                           created_at
 
         
-        `, [course.sportName, course.courseName, course.shortDescription, course.detailedDescription, course.tutorialVideoURL, course.coverImageURL, course.tipsAndTricks, user.email])
+        `, [course.sportName, course.courseName, course.shortDescription, course.detailedDescription, course.coverImageURL, course.tutorialVideoURL, course.tipsAndTricks, user.email])
 
         return results.rows[0]
     }
