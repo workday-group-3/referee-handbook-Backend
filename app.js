@@ -11,6 +11,7 @@ const { NotFoundError } = require("./utils/errors")
 //create routes
 const authRoutes = require("./routes/auth")
 const learningRoutes = require("./routes/learning")
+const profileRoutes = require("./routes/profile")
 
 
 
@@ -31,6 +32,7 @@ app.use(security.extractUserFromJwt)
 //Assign routes
 app.use("/auth", authRoutes)
 app.use("/learning", learningRoutes)
+app.use("/profile", profileRoutes)
 
 
 // health check 
