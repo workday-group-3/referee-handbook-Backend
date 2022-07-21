@@ -16,7 +16,7 @@ class Profile {
                    c.user_id,
                    u.email
             FROM UserCreatedCourses AS c
-                RIGHT JOIN users AS u ON u.id = c.user_id
+                JOIN users AS u ON u.id = c.user_id
             WHERE u.email = $1
             ORDER BY c.created_at DESC
         `, [user.email])
