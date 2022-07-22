@@ -54,6 +54,22 @@ router.get("/:sportname", async (req, res, next) => {
 
 
 
+//fetches user created courses for the specified courseId
+router.get("/:sportname/userCreated/:courseId", async (req, res, next) => {
+    try {
+        // send json response back containing all information about that specific user created course
+        const { sportname, courseId } = req.params
+        const { user } = res.locals
+        const userCourse = await Learning.listUserCourseById({sportname, courseId, user})
+        return res.status(200).json({ userCourse })
+    }
+    catch(err) {
+        next(err)
+    }
+})
+
+
+
 
 
 
