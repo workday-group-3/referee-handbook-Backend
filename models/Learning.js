@@ -83,7 +83,7 @@ class Learning {
 
 
 
-    static async listUserCoursesBySport({sportname, user}) {
+    static async listUserCoursesBySport(sportname) {
 
         //pull all user created courses from database that satisfy the sportName parameter
         const results = await db.query(`
@@ -100,9 +100,9 @@ class Learning {
                 u.username
             FROM UserCreatedCourses AS c
                 JOIN users AS u ON u.id = c.user_id
-            WHERE c.sport_name = $1 AND u.email = $2
+            WHERE c.sport_name = $1 
             ORDER BY c.created_at DESC
-        `, [sportname, user.email])
+        `, [sportname])
         return results.rows
    
     }
