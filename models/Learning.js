@@ -87,7 +87,9 @@ class Learning {
 
         //pull all user created courses from database that satisfy the sportName parameter
         const results = await db.query(`
-            SELECT c.course_title,
+            SELECT
+                c.id AS "courseId", 
+                c.course_title,
                 c.course_short_description,
                 c.course_content,
                 c.course_cover_image_URL,
@@ -101,10 +103,33 @@ class Learning {
             WHERE c.sport_name = $1 AND u.email = $2
             ORDER BY c.created_at DESC
         `, [sportname, user.email])
-
         return results.rows
    
+    }
 
+
+
+    static async listUserCourseById({sportname, courseId, user}) {
+
+        //pull all user created courses from database that matches courseId
+        const results = await db.query(`
+            SELECT
+                c.id AS "courseId", 
+                c.course_title,
+                c.course_short_description,
+                c.course_content,
+                c.course_cover_image_URL,
+                c.course_tutorial_video_URL,
+                c.course_tips_tricks,
+                c.difficulty,
+                c.created_at,
+                u.username
+            FROM UserCreatedCourses AS c
+                JOIN users AS u ON u.id = c.user_id
+            WHERE c.id = $1 AND u.email = $2
+        `, [courseId, user.email])
+        return results.rows[0]
+   
     }
 
 
