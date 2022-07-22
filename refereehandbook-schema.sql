@@ -146,6 +146,7 @@ CREATE TABLE UserCreatedCourses (
     course_content              TEXT NOT NULL,
     course_tutorial_video_URL   TEXT NOT NULL,
     course_tips_tricks          TEXT NOT NULL,
+    difficulty                  TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     created_at                  TIMESTAMP NOT NULL DEFAULT NOW()
 )

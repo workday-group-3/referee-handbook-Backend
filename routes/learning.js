@@ -43,7 +43,8 @@ router.get("/:sportname", async (req, res, next) => {
     try {
         // send json response back for list of all user created courses under sportName category
         const { sportname } = req.params
-        const userCourses = await Learning.listUserCoursesBySport(sportname)
+        const { user } = res.locals
+        const userCourses = await Learning.listUserCoursesBySport({sportname, user})
         return res.status(200).json({ userCourses })
     }
     catch(err) {

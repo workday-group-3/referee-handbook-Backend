@@ -42,7 +42,7 @@ class Learning {
 
 
         //error checking to see if form is missing any required parameters
-        const requiredFields = ["sportName", "courseName", "shortDescription", "detailedDescription", "tutorialVideoURL", "coverImageURL", "tipsAndTricks"]
+        const requiredFields = ["sportName", "courseName", "shortDescription", "detailedDescription", "tutorialVideoURL", "coverImageURL", "difficulty", "tipsAndTricks"]
         requiredFields.forEach(field => {
             if (!course.hasOwnProperty(field)){
                 throw new BadRequestError(`Missing ${field} field.`)
@@ -59,9 +59,10 @@ class Learning {
                 course_cover_image_URL,
                 course_tutorial_video_URL,
                 course_tips_tricks,
+                difficulty,
                 user_id
                 )
-                VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT id FROM users WHERE email = $8))
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, (SELECT id FROM users WHERE email = $9))
                 RETURNING id,
                           sport_name
                           course_title,
@@ -70,18 +71,19 @@ class Learning {
                           course_cover_image_URL,
                           course_tutorial_video_URL,
                           course_tips_tricks,
+                          difficulty,
                           user_id,
                           created_at
 
         
-        `, [course.sportName, course.courseName, course.shortDescription, course.detailedDescription, course.coverImageURL, course.tutorialVideoURL, course.tipsAndTricks, user.email])
+        `, [course.sportName, course.courseName, course.shortDescription, course.detailedDescription, course.coverImageURL, course.tutorialVideoURL, course.tipsAndTricks, course.difficulty, user.email])
 
         return results.rows[0]
     }
 
 
 
-    static async listUserCoursesBySport(sportname) {
+    static async listUserCoursesBySport({sportname, user}) {
 
         //pull all user created courses from database that satisfy the sportName parameter
         const results = await db.query(`
@@ -91,11 +93,14 @@ class Learning {
                 c.course_cover_image_URL,
                 c.course_tutorial_video_URL,
                 c.course_tips_tricks,
-                c.created_at
+                c.difficulty,
+                c.created_at,
+                u.username
             FROM UserCreatedCourses AS c
-            WHERE c.sport_name = $1
+                JOIN users AS u ON u.id = c.user_id
+            WHERE c.sport_name = $1 AND u.email = $2
             ORDER BY c.created_at DESC
-        `, [sportname])
+        `, [sportname, user.email])
 
         return results.rows
    
