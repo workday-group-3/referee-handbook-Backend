@@ -12,6 +12,7 @@ const { NotFoundError } = require("./utils/errors")
 const authRoutes = require("./routes/auth")
 const learningRoutes = require("./routes/learning")
 const profileRoutes = require("./routes/profile")
+const followingRoutes = require("./routes/following")
 
 
 
@@ -33,6 +34,7 @@ app.use(security.extractUserFromJwt)
 app.use("/auth", authRoutes)
 app.use("/learning", learningRoutes)
 app.use("/profile", profileRoutes)
+app.use("/home", followingRoutes)
 
 
 // health check 

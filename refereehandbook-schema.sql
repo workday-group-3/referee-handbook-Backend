@@ -149,6 +149,20 @@ CREATE TABLE UserCreatedCourses (
     difficulty                  TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     created_at                  TIMESTAMP NOT NULL DEFAULT NOW()
-)
+);
 
 
+
+
+------------------------CREATE AND STORE ALL USER FOLLOWING ACTIVITY-----------------------------------------------------
+CREATE TABLE UsersFollowingTeam (
+    id                          SERIAL PRIMARY KEY,
+    team_name                   TEXT NOT NULL,
+    team_logo                   TEXT NOT NULL,
+    team_id                     INTEGER NOT NULL,
+    team_league                 TEXT NOT NULL,
+    team_sport_name             TEXT NOT NULL,
+    user_id                     INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    following_at                TIMESTAMP NOT NULL DEFAULT NOW()
+);
