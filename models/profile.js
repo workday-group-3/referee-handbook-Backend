@@ -20,11 +20,29 @@ class Profile {
             WHERE u.email = $1
             ORDER BY c.created_at DESC
         `, [user.email])
-
         return results.rows
-
     }
 
+
+    static async listFollowedTeamsByUser(user) {
+
+        //pull all user followed teams from database that are owned by the currently signed in user 
+        const results = await db.query(`
+            SELECT t.team_name,
+                   t.team_logo,
+                   t.team_id,
+                   t.team_league,
+                   t.team_sport_name,
+                   t.user_id,
+                   t.following_at,
+                   u.email
+            FROM UsersFollowingTeam AS t
+                JOIN users AS u ON u.id = t.user_id
+            WHERE u.email = $1
+            ORDER BY t.following_at DESC
+        `, [user.email])
+        return results.rows
+    }
 
 
 }
