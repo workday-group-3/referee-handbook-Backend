@@ -22,6 +22,21 @@ router.get("/", async (req, res, next) => {
 
 
 
+//List all sports teams that the currently signed in user is following
+router.get("/", async (req, res, next) => {
+    try {
+        // send json response back for list of all sports teams that the currently signed in user is following
+        const { user } = res.locals
+        const userOwnedCourses = await Profile.listUserCoursesByUser(user)
+        return res.status(200).json({ userOwnedCourses })
+    }
+    catch(err) {
+        next(err)
+    }
+})
+
+
+
 
 
 
