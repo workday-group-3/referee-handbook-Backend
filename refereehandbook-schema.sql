@@ -1,4 +1,4 @@
--- CREATE USER TABLE
+-- CREATE USER TABLE-------------
 CREATE TABLE users (
     id          SERIAL PRIMARY KEY,
     email       TEXT NOT NULL UNIQUE CHECK(POSITION('@' IN email) > 1),
@@ -26,6 +26,56 @@ CREATE TABLE BeginnerCourses (
     beginner_field_diagram_URL  TEXT NOT NULL,
     created_at                  TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
+
+
+------------------------CREATE AND STORE ALL USER CREATED COURSES-----------------------------------------------------
+CREATE TABLE UserCreatedCourses (
+    id                          SERIAL PRIMARY KEY,
+    sport_name                  TEXT NOT NULL,
+    user_id                     INTEGER NOT NULL,
+    course_title                TEXT NOT NULL,
+    course_short_description    TEXT NOT NULL,
+    course_cover_image_URL 	    TEXT NOT NULL,
+    course_content              TEXT NOT NULL,
+    course_tutorial_video_URL   TEXT NOT NULL,
+    course_tips_tricks          TEXT NOT NULL,
+    difficulty                  TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    created_at                  TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+
+
+
+------------------------CREATE AND STORE ALL USER FOLLOWING ACTIVITY-----------------------------------------------------
+CREATE TABLE UsersFollowingTeam (
+    id                          SERIAL PRIMARY KEY,
+    team_name                   TEXT NOT NULL,
+    team_logo                   TEXT NOT NULL,
+    team_id                     INTEGER NOT NULL,
+    team_league                 TEXT NOT NULL,
+    team_sport_name             TEXT NOT NULL,
+    user_id                     INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    following_at                TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (1, 
@@ -135,34 +185,91 @@ VALUES (6,
         'https://www.youtube.com/embed/F22A_V77Tic', 
         'https://i0.wp.com/texasrugbyunion.com/wp-content/uploads/2015/09/Technical-Zones-Diagram-rugby-field.png?ssl=1' );
 
-------------------------CREATE AND STORE ALL USER CREATED COURSES-----------------------------------------------------
-CREATE TABLE UserCreatedCourses (
-    id                          SERIAL PRIMARY KEY,
-    sport_name                  TEXT NOT NULL,
-    user_id                     INTEGER NOT NULL,
-    course_title                TEXT NOT NULL,
-    course_short_description    TEXT NOT NULL,
-    course_cover_image_URL 	    TEXT NOT NULL,
-    course_content              TEXT NOT NULL,
-    course_tutorial_video_URL   TEXT NOT NULL,
-    course_tips_tricks          TEXT NOT NULL,
-    difficulty                  TEXT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    created_at                  TIMESTAMP NOT NULL DEFAULT NOW()
-);
 
 
 
 
-------------------------CREATE AND STORE ALL USER FOLLOWING ACTIVITY-----------------------------------------------------
-CREATE TABLE UsersFollowingTeam (
-    id                          SERIAL PRIMARY KEY,
-    team_name                   TEXT NOT NULL,
-    team_logo                   TEXT NOT NULL,
-    team_id                     INTEGER NOT NULL,
-    team_league                 TEXT NOT NULL,
-    team_sport_name             TEXT NOT NULL,
-    user_id                     INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    following_at                TIMESTAMP NOT NULL DEFAULT NOW()
-);
+
+
+----------SEED DATA INTO USERS TABLE FOR DEMO/POD SYNC PURPOSES-------------------------------
+
+INSERT INTO users (id, email, username, password, first_name, last_name, location)
+VALUES (0,
+        'doug@case.io',
+        'dogcage',
+        'pw',
+        'Doug',
+        'Case',
+        'Pleasanton, CA');
+
+
+
+
+
+
+----------SEED DATA INTO USER CREATED COURSES FOR DEMO/POD SYNC PURPOSES-------------------------------
+
+INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
+VALUES (1,
+        'Basketball',
+        0,
+        'How to Shoot Like Steph',
+        'This course will teach you how to step up your game and shoot like the legendary Golden State Warriors player, Stephen Curry.',
+        'https://i.ytimg.com/vi/nDMDOZW6rPs/maxresdefault.jpg',
+        'Curry is a right handed shooter, so in order to align his right side, he turns his feet slightly towards the left. Sometimes, off the dribble, his feet point directly at the rim. When this happens, he rotates his hips as he jumps, and turns in the air to maintain that alignment.',
+        'https://www.youtube.com/watch?v=nDMDOZW6rPs',
+        'By shooting with a high arc, Curry improves the angle of the ball`s path as it approaches the rim.',
+        'Collegiate'
+        );
+
+INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
+VALUES (2,
+        'Basketball',
+        0,
+        'How to Play Like Lebron',
+        'This course will teach you how to take your game to the next level and start playing like legendary Lakers player, Lebron James.',
+        'https://grottonetwork.com/wp-content/uploads/2019/01/how-to-play-life-like-lebron-james-plays-basketball.jpg',
+        'In order to play like Lebron, it is important to master your court vision and playing with authority. Lebron is deadly on the fast break, and is able to finish at the rim with strength, and this is thanks to all of his hard work at the gym.',
+        'https://www.youtube.com/watch?v=QcscsvbplIg',
+        'Lebron stresses how important it is to also spend time in the gym to become faster and stronger, instead of only focusing on your basketball skills in the court.',
+        'Professional'
+        );
+
+INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
+VALUES (3,
+        'Soccer',
+        0,
+        'How to Dribble Like Messi',
+        'This course will teach you how to dribble like the legendary Barcelona wing, Lionel Messi.',
+        'https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt2b037240b3a9bfb8/60db78ae5e51ad3b1d265ab2/f929b881fd0ec7504316cd59d510677df2751c83.jpg',
+        'The first three steps after your first touch are the most important factor in deciding if you will be able to keep control of the ball in your dribble. You want to make sure your first touch lays the ball perfectly infront of you and slows the ball down significantly.',
+        'https://www.youtube.com/watch?v=IYQfrAf7HFc',
+        'It is important to keep the ball close at all times, and to keep your head up as you move the ball.',
+        'Amateur'
+        );
+
+
+
+----------SEED DATA INTO UsersFollowingTeam FOR DEMO/POD SYNC PURPOSES-------------------------------
+
+INSERT INTO UsersFollowingTeam (id, team_name, team_logo, team_id, team_league, team_sport_name, user_id)
+VALUES (1,
+        'Minnesota Twins',
+        'https://media.api-sports.io/baseball/teams/22.png',
+        22,
+        'MLB',
+        'baseball',
+        0
+        );
+
+
+INSERT INTO UsersFollowingTeam (id, team_name, team_logo, team_id, team_league, team_sport_name, user_id)
+VALUES (2,
+        'Cleveland Cavaliers',
+        'https://media.api-sports.io/basketball/teams/137.png',
+        137,
+        'NBA',
+        'basketball',
+        0
+        );
+
