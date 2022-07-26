@@ -97,7 +97,8 @@ class Learning {
                 c.course_tips_tricks,
                 c.difficulty,
                 c.created_at,
-                u.username
+                u.username,
+                u.profile_image_URL
             FROM UserCreatedCourses AS c
                 JOIN users AS u ON u.id = c.user_id
             WHERE c.sport_name = $1 
