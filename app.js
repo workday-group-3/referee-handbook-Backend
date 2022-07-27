@@ -19,7 +19,14 @@ const followingRoutes = require("./routes/following")
 const app = express()
 
 //middleware
-app.use(cors()) //enable cross origin sharing
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) //enable cross origin sharing
 app.use(express.json()) //parse incoming request bodies with JSON payloads
 app.use(morgan("tiny")) // Log request info
 
