@@ -42,12 +42,26 @@ class Learning {
 
 
         //error checking to see if form is missing any required parameters
-        const requiredFields = ["sportName", "courseName", "shortDescription", "detailedDescription", "tutorialVideoURL", "coverImageURL", "difficulty", "tipsAndTricks"]
+        const requiredFields = ["sportName", "courseName", "shortDescription", "detailedDescription", "coverImageURL", "difficulty", "tipsAndTricks"]
         requiredFields.forEach(field => {
             if (!course.hasOwnProperty(field)){
                 throw new BadRequestError(`Missing ${field} field.`)
             }
         })
+
+        
+        //Use Regular expressions to test that the provided YT URL contains a video code
+        const videoCode = /watch\?v\=(.*)/
+        const acceptableFormat = videoCode.test(course.tutorialVideoURL)
+
+        console.log("course is: ", course)
+        console.log("Course youtube link is: ", course.tutorialVideoURL)
+
+        if (course.tutorialVideoURL != undefined && !acceptableFormat) {
+            throw new BadRequestError(`Invalid YouTube Url`)
+        }
+
+
 
         //inserting course entry into db
         const results = await db.query(`
