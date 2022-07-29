@@ -23,6 +23,7 @@ router.get("/", async(req, res, next) =>{
     }
 })
 
+// fetching a list of teams for the sport and season
 router.get("/:sportName/teams", async(req, res, next) =>{
     try {
         const {sportName} = req.params
@@ -76,6 +77,7 @@ router.get("/:sportName/teams", async(req, res, next) =>{
     }
 })
 
+// fetching the most recent game of a sport
 router.get("/:sportName/recentGame", async(req, res, next) =>{
     try {
         const {sportName} = req.params
@@ -138,6 +140,27 @@ router.get("/:sportName/recentGame", async(req, res, next) =>{
             return res.status(200).json({"json": filtered_games_others[filtered_games_others.length - 1], "source": "api"})
         }     
         
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get("/:sportName/news", async(req, res, next) =>{
+    try {
+        const {sportName} = req.params
+        // check if we have a cached value of the sport we want
+        let cacheEntry = await redis.get(`news:${sportName}`)
+
+        // if cache hit, return that entry
+        if(cacheEntry) {
+            cacheEntry = JSON.parse(cacheEntry)
+            return res.status(200).json({"json": cacheEntry, "source": "cache"})
+        }
+
+        // otherwise, call api
+        let json = await axios.get('https://api.thenewsapi.com/v1/news/all?api_token='+process.env.NEWS_API_KEY+"&search="+sportName+"&language=en&sort=published_at&limit=2&categories=sports")
+        redis.set(`news:${sportName}`, JSON.stringify(json.data.data), 'EX', 300)
+        return res.status(200).json({"news": json.data.data})
     } catch (err) {
         next(err)
     }
