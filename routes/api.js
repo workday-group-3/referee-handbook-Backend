@@ -52,22 +52,6 @@ router.get("/:sportName/teams", async(req, res, next) =>{
             }
         })
         
-        // soccer data is formatted differently, change json formatting here to avoid complications
-        if(sportName == "soccer"){
-            for(let i = 0; i < json.data.response.length; i++){
-                json.data.response[i] = json.data.response[i].team
-            }
-        }
-        // delete the league from the list of baseball teams
-        if(sportName == "baseball"){
-            delete json.data.response[0]
-        }
-
-        //delete the divisions from the list of hockey teams
-        if(sportName == "hockey"){
-            delete json.data.response[2]
-            delete json.data.response[7]
-        }
 
         redis.set(`teams:${sportName}`, JSON.stringify(json.data.response), 'EX', 13149000)
         
@@ -113,16 +97,6 @@ router.get("/:sportName/recentGame", async(req, res, next) =>{
             // filter to find the matches that finished/is in progress
             let filtered_games = json.data.response.filter((item)=>item.fixture.date < new Date().toISOString())
 
-            // reformat the most recent game
-            // change the key "goals" to "scores" to match the others
-            filtered_games[filtered_games.length - 1].scores = filtered_games[filtered_games.length - 1].goals
-            delete filtered_games[filtered_games.length - 1].goals
-
-            // extract date and status variables to match others
-            filtered_games[filtered_games.length - 1].date = filtered_games[filtered_games.length - 1].fixture.date
-            filtered_games[filtered_games.length - 1].status = filtered_games[filtered_games.length - 1].fixture.status
-            delete filtered_games[filtered_games.length - 1].fixture
-
             // set the updated game
             redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games[filtered_games.length - 1]), 'EX', 60)
             return res.status(200).json({"json": filtered_games[filtered_games.length - 1], "source": "api"})
@@ -131,12 +105,7 @@ router.get("/:sportName/recentGame", async(req, res, next) =>{
         // data filtering for all the other sports
         else{
             let filtered_games_others = json.data.response.filter((item)=>item.date < new Date().toISOString())
-            if(sportName == "basketball" || sportName == "baseball"){
-                // basketball and baseball are formatted differently, extract the total scores to match other formatting
-                filtered_games_others[filtered_games_others.length - 1].scores.home = filtered_games_others[filtered_games_others.length - 1].scores.home.total
-                filtered_games_others[filtered_games_others.length - 1].scores.away = filtered_games_others[filtered_games_others.length - 1].scores.away.total
-            }
-            redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games_others[filtered_games_others.length - 1]), 'EX', 60)
+            redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games_others[filtered_games_others.length - 1]), 'EX', 90)
             return res.status(200).json({"json": filtered_games_others[filtered_games_others.length - 1], "source": "api"})
         }     
         
