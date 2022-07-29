@@ -135,4 +135,36 @@ router.get("/:sportName/news", async(req, res, next) =>{
     }
 })
 
+router.get("/:sportName/:teamId", async(req, res, next) =>{
+    try {
+        const {sportName, teamId} = req.params
+        let apiSportString = 'v1.'+sportName
+        // the api version for soccer is v3, different from the rest
+        if(sportName == "soccer"){
+            apiSportString = "v3.football"
+        }
+
+         // check if we have a cached value of the sport we want
+         let cacheEntry = await redis.get(`team:${sportName}${teamId}`)
+
+         // if cache hit, return that entry
+         if(cacheEntry) {
+             cacheEntry = JSON.parse(cacheEntry)
+             return res.status(200).json({"json": cacheEntry, "source": "cache"})
+         }
+
+        let json = await axios.get("https://"+apiSportString+".api-sports.io/teams?id="+teamId, {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": apiSportString+".api-sports.io",
+                    "x-rapidapi-key": process.env.SPORTS_API_KEY
+                }
+            })
+        redis.set(`team:${sportName}${teamId}`, JSON.stringify(json.data.response), 'EX', 13149000)
+        return res.status(200).json({"json": json.data.response, "source": "api"})
+    } catch (err) {
+        next(err)
+    }
+})
+
 module.exports = router
