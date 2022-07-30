@@ -34,7 +34,7 @@ app.use(security.extractUserFromJwt)
 app.use("/auth", authRoutes)
 app.use("/learning", learningRoutes)
 app.use("/profile", profileRoutes)
-app.use("/home", followingRoutes)
+app.use("/sports", followingRoutes)
 
 
 // health check 

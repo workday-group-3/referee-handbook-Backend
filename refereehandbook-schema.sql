@@ -210,7 +210,7 @@ VALUES (0,
 ----------SEED DATA INTO USER CREATED COURSES FOR DEMO/POD SYNC PURPOSES-------------------------------
 
 INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
-VALUES (1,
+VALUES (-2,
         'Basketball',
         0,
         'How to Shoot Like Steph',
@@ -223,7 +223,7 @@ VALUES (1,
         );
 
 INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
-VALUES (2,
+VALUES (-1,
         'Basketball',
         0,
         'How to Play Like Lebron',
@@ -236,7 +236,7 @@ VALUES (2,
         );
 
 INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
-VALUES (3,
+VALUES (0,
         'Soccer',
         0,
         'How to Dribble Like Messi',
@@ -250,26 +250,4 @@ VALUES (3,
 
 
 
-----------SEED DATA INTO UsersFollowingTeam FOR DEMO/POD SYNC PURPOSES-------------------------------
-
-INSERT INTO UsersFollowingTeam (id, team_name, team_logo, team_id, team_league, team_sport_name, user_id)
-VALUES (1,
-        'Minnesota Twins',
-        'https://media.api-sports.io/baseball/teams/22.png',
-        22,
-        'MLB',
-        'baseball',
-        0
-        );
-
-
-INSERT INTO UsersFollowingTeam (id, team_name, team_logo, team_id, team_league, team_sport_name, user_id)
-VALUES (2,
-        'Cleveland Cavaliers',
-        'https://media.api-sports.io/basketball/teams/137.png',
-        137,
-        'NBA',
-        'basketball',
-        0
-        );
 
