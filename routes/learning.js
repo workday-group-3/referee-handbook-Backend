@@ -38,6 +38,21 @@ router.post("/:sportname", security.requireAuthenticatedUser, async (req, res, n
     }
 })
 
+
+//user can edit a course based on a specific course id
+router.put("/:sportname/userCreated/:courseId", async (req, res, next) => {
+    try {
+
+        //edits user course based on the paramenters provided
+        const { user } = res.locals
+        const course = await Learning.updateExistingCourse({course: req.body, user})
+        return res.status(204).json({course})
+
+    } catch (err) {
+        next(err)
+    }
+})
+
 //List all user created courses for the current sport course list
 router.get("/:sportname", async (req, res, next) => {
     try {
@@ -83,6 +98,8 @@ router.delete("/:sportname/userCreated/:courseId", async (req, res, next) => {
         next(err)
     }
 })
+
+
 
 
 

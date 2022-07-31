@@ -103,6 +103,48 @@ class Learning {
     }
 
 
+    static async updateExistingCourse ({course}) {
+        //error checking to see if form is missing any required parameters
+        const requiredFields = ["sportName", "courseName", "shortDescription", "detailedDescription", "coverImageURL", "difficulty", "tipsAndTricks"]
+
+
+        requiredFields.forEach(field => {
+            if (!course.hasOwnProperty(field)){
+                throw new BadRequestError(`Missing ${field} field.`)
+            }
+        })
+
+        //checking for any fields exceeding character limits set in database
+        requiredFields.forEach(field => {
+            if(course[field].length > 5000) {
+                throw new BadRequestError(`${field} exceeds maximum character length.`)
+            }
+        })
+
+        
+        
+        //Use Regular expressions to test that the provided YT URL contains a video code
+        const videoCode = /watch\?v\=(.*)/
+        const acceptableFormat = videoCode.test(course.tutorialVideoURL)
+
+        if (course.tutorialVideoURL != undefined && !acceptableFormat) {
+            throw new BadRequestError(`Invalid YouTube Url`)
+        }
+
+        //editing course entry in database 
+        const results = await db.query(`
+            UPDATE UserCreatedCourses
+            SET course_title=$1,
+                course_short_description=$2,
+                course_content=$3,
+                course_cover_image_URL=$4,
+                course_tutorial_video_URL=$5,
+                course_tips_tricks=$6,
+                course_difficulty=$7
+            WHERE id=$8
+        `, [course.courseName, course.shortDescription, course.detailedDescription, course.coverImageURL, course.tutorialVideoURL, course.tipsAndTricks, course.difficulty, course.courseId])
+        return results.rows[0]
+    }
 
     static async listUserCoursesBySport(sportname) {
 
