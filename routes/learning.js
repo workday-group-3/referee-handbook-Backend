@@ -68,6 +68,22 @@ router.get("/:sportname/userCreated/:courseId", async (req, res, next) => {
     }
 })
 
+//users can delete a course based on a specific course id
+router.delete("/:sportname/userCreated/:courseId", async (req, res, next) => {
+
+    try {
+        //deletes user course based on parameters provided
+        const { courseId } = req.params
+
+        const results = await Learning.deleteCourseById({courseId})
+
+        return res.status(204).json({status: "success", result: results})
+
+    } catch (err)  {
+        next(err)
+    }
+})
+
 
 
 

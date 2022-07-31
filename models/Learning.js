@@ -154,6 +154,18 @@ class Learning {
    
     }
 
+    static async deleteCourseById( { courseId} ) {
+
+        //deletes a course based on the provided courseId
+        const results = await db.query(`
+            DELETE 
+            FROM UserCreatedCourses
+            WHERE id=$1
+        `, [courseId])
+
+        console.log("hello?")
+        return results.rows[0]
+    }
 
 
 
