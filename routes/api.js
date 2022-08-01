@@ -15,7 +15,7 @@ const requestParams = {"basketball": {"league": 12, "season": "2021-2022", "leag
 //Sanitary check
 router.get("/", async(req, res, next) =>{
     try {
-        return res.status(200).json({"ping": "pong"})
+        return res.status(200).json({"sports": "pong"})
     } catch (err) {
         next(err)
     }
