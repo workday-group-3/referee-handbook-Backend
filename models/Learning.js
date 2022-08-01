@@ -103,7 +103,7 @@ class Learning {
     }
 
 
-    static async updateExistingCourse ({course}) {
+    static async updateExistingCourse ({course, courseId}) {
         //error checking to see if form is missing any required parameters
         const requiredFields = ["sportName", "courseName", "shortDescription", "detailedDescription", "coverImageURL", "difficulty", "tipsAndTricks"]
 
@@ -140,9 +140,12 @@ class Learning {
                 course_cover_image_URL=$4,
                 course_tutorial_video_URL=$5,
                 course_tips_tricks=$6,
-                course_difficulty=$7
-            WHERE id=$8
-        `, [course.courseName, course.shortDescription, course.detailedDescription, course.coverImageURL, course.tutorialVideoURL, course.tipsAndTricks, course.difficulty, course.courseId])
+                difficulty=$7
+            WHERE id=$8 ;
+        `, [course.courseName, course.shortDescription, course.detailedDescription, course.coverImageURL, course.tutorialVideoURL, course.tipsAndTricks, course.difficulty, courseId])
+        
+        console.log("our course is: ", course)
+
         return results.rows[0]
     }
 
