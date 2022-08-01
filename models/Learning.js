@@ -145,7 +145,7 @@ class Learning {
             WHERE id=$8 ;
         `, [course.courseName, course.shortDescription, course.detailedDescription, course.coverImageURL, course.tutorialVideoURL, course.tipsAndTricks, course.difficulty, courseId])
         
-        console.log("our course is: ", course)
+        
 
         return results.rows[0]
     }
@@ -209,7 +209,6 @@ class Learning {
             WHERE id=$1
         `, [courseId])
 
-        console.log("hello?")
         return results.rows[0]
     }
 
