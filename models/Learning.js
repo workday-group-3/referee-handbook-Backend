@@ -64,7 +64,8 @@ class Learning {
         const videoCode = /watch\?v\=(.*)/
         const acceptableFormat = videoCode.test(course.tutorialVideoURL)
 
-        if (course.tutorialVideoURL != undefined && !acceptableFormat) {
+        
+        if (course.tutorialVideoURL != '' && course.tutorialVideoURL != undefined && !acceptableFormat) {
             throw new BadRequestError(`Invalid YouTube Url`)
         }
 
