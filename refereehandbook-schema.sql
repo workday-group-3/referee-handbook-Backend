@@ -8,6 +8,8 @@ CREATE TABLE users (
     last_name   VARCHAR(250) NOT NULL,
     location    VARCHAR(250) NOT NULL,
     profile_image_URL VARCHAR(250),
+    pw_reset_token TEXT,
+    pw_reset_token_exp TIMESTAMP,
     created_at  TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at  TIMESTAMP NOT NULL DEFAULT NOW()
 );
@@ -36,7 +38,7 @@ CREATE TABLE UserCreatedCourses (
     user_id                     INTEGER NOT NULL,
     course_title                VARCHAR(5000) NOT NULL,
     course_short_description    VARCHAR(5000) NOT NULL,
-    course_cover_image_URL 	VARCHAR(5000)  NOT NULL,
+    course_cover_image_URL 	    VARCHAR(5000)  NOT NULL,
     course_content              VARCHAR(5000) NOT NULL,
     course_tips_tricks          VARCHAR(5000) NOT NULL,
     difficulty                  VARCHAR(5000) NOT NULL,
