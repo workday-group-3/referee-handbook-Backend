@@ -38,6 +38,21 @@ router.post("/:sportname", security.requireAuthenticatedUser, async (req, res, n
     }
 })
 
+
+//Update a user created course based on a specific course id
+router.put("/:sportname/userCreated/:courseId", async (req, res, next) => {
+    try {
+
+        //edits user course based on the paramenters provided
+        const { courseId } = req.params
+        const course = await Learning.updateExistingCourse({course: req.body, courseId: courseId})
+        return res.status(204).json({course})
+
+    } catch (err) {
+        next(err)
+    }
+})
+
 //List all user created courses for the current sport course list
 router.get("/:sportname", async (req, res, next) => {
     try {
@@ -67,6 +82,24 @@ router.get("/:sportname/userCreated/:courseId", async (req, res, next) => {
         next(err)
     }
 })
+
+//users can delete a course based on a specific course id
+router.delete("/:sportname/userCreated/:courseId", async (req, res, next) => {
+
+    try {
+        //deletes user course based on parameters provided
+        const { courseId } = req.params
+
+        const results = await Learning.deleteCourseById({courseId})
+
+        return res.status(204).json({status: "success", result: results})
+
+    } catch (err)  {
+        next(err)
+    }
+})
+
+
 
 
 
