@@ -55,7 +55,7 @@ router.get("/:sportName/teams", async(req, res, next) =>{
 
         redis.set(`teams:${sportName}`, JSON.stringify(json.data.response), 'EX', 13149000)
         
-        return res.status(200).json({"json": json.data.response, "source": "api"})
+        return res.status(200).json({"json": json.data.response, "source": "api", "limit": json.data.errors.rateLimit})
     } catch (err) {
         next(err)
     }
@@ -106,7 +106,7 @@ router.get("/:sportName/recentGame", async(req, res, next) =>{
         else{
             let filtered_games_others = json.data.response.filter((item)=>item.date < new Date().toISOString())
             redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games_others[filtered_games_others.length - 1]), 'EX', 90)
-            return res.status(200).json({"json": filtered_games_others[filtered_games_others.length - 1], "source": "api"})
+            return res.status(200).json({"json": filtered_games_others[filtered_games_others.length - 1], "source": "api", "limit": json.data.errors.rateLimit})
         }     
         
     } catch (err) {
@@ -131,6 +131,9 @@ router.get("/:sportName/news", async(req, res, next) =>{
         redis.set(`news:${sportName}`, JSON.stringify(json.data.data), 'EX', 300)
         return res.status(200).json({"news": json.data.data})
     } catch (err) {
+        if(err.response.status === 402){
+            return res.status(402).json({"error": err.response})
+        }
         next(err)
     }
 })
@@ -161,7 +164,44 @@ router.get("/:sportName/:teamId", async(req, res, next) =>{
                 }
             })
         redis.set(`team:${sportName}${teamId}`, JSON.stringify(json.data.response), 'EX', 13149000)
-        return res.status(200).json({"json": json.data.response, "source": "api"})
+        return res.status(200).json({"json": json.data.response, "source": "api", "limit": json.data.errors.rateLimit})
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get("/:sportName/:teamId/stats", async(req, res, next) => {
+    try {
+        const {sportName, teamId} = req.params
+        let apiSportString = 'v1.'+sportName
+        let endpoint = "/teams/statistics"
+        // the api version for soccer is v3, different from the rest
+        if(sportName === "soccer"){
+            apiSportString = "v3.football"
+        }
+        // endpoint for basketball is different
+        if(sportName === "basketball"){
+            endpoint = "/statistics"
+        }
+        // check if we have a cached value of the sport we want
+        let cacheEntry = await redis.get(`stats:${sportName}${teamId}`)
+
+        // if cache hit, return that entry
+        if(cacheEntry) {
+            cacheEntry = JSON.parse(cacheEntry)
+            return res.status(200).json({"json": cacheEntry, "source": "cache"})
+        }
+
+        let json = await axios.get("https://"+apiSportString+".api-sports.io"+endpoint+"?team="+teamId+"&league="+requestParams[sportName].league+"&season="+requestParams[sportName].season, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": apiSportString+".api-sports.io",
+                "x-rapidapi-key": process.env.SPORTS_API_KEY
+            }
+        })
+        redis.set(`stats:${sportName}${teamId}`, JSON.stringify(json.data.response), 'EX', 18000)
+        return res.status(200).json({"json": json.data.response, "source": "api", "limit": json.data.errors.rateLimit})
+
     } catch (err) {
         next(err)
     }
