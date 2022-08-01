@@ -2,9 +2,7 @@ const express = require("express")
 const Redis = require("ioredis")
 const axios = require("axios")
 const router = express.Router()
-const redis = new Redis(
-    {'port': process.env.REDIS_PORT || 6379,
-    'host': process.env.REDIS_HOST || '127.0.0.1'})
+const redis = new Redis(process.env.REDIS_URL)
 
 // storing all the information for leagues, leagueName and seasons of each respective sport
 const requestParams = {"basketball": {"league": 12, "season": "2021-2022", "leagueName": "NBA"},
