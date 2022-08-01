@@ -207,4 +207,37 @@ router.get("/:sportName/:teamId/stats", async(req, res, next) => {
     }
 })
 
+router.get("/:sportName/:teamId/games", async(req, res, next) => {
+    try{
+        const {sportName, teamId} = req.params
+        let apiSportString = 'v1.'+sportName
+        let endpoint = "/games"
+        // the api version for soccer is v3, endpoint is fixtures, different from the rest
+        if(sportName == "soccer"){
+            apiSportString = "v3.football"
+            endpoint = "/fixtures"
+        }
+        // check if we have a cached value of the sport we want
+        let cacheEntry = await redis.get(`games:${sportName}${teamId}`)
+
+        // if cache hit, return that entry
+        if(cacheEntry) {
+            cacheEntry = JSON.parse(cacheEntry)
+            return res.status(200).json({"json": cacheEntry, "source": "cache"})
+        }
+        // conditionally fetches by the league and season of the specific sport
+        let json = await axios.get("https://"+apiSportString+".api-sports.io"+endpoint+"?league="+requestParams[sportName].league+"&season="+requestParams[sportName].season+"&team="+teamId, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": apiSportString+".api-sports.io",
+                "x-rapidapi-key": process.env.SPORTS_API_KEY
+            }
+        })
+        redis.set(`games:${sportName}${teamId}`, JSON.stringify(json.data.response), 'EX', 18000)
+        return res.status(200).json({"json": json.data.response, "source": "api", "limit": json.data.errors.rateLimit})
+    } catch(err){
+        next(err)
+    }
+})
+
 module.exports = router
