@@ -25,15 +25,16 @@ router.get("/:username", async (req, res, next) => {
     try {
         const { username } = req.params
         const userOwnedCourses = await Profile.listUserCoursesByUser({username})
-        
+        const userInformation = await Profile.listUserPublicInformation({username})
         const userFollowedTeams = await Profile.listFollowedTeamsByUser({username})
 
-
-        return res.status(200).json({ "userCourses": userOwnedCourses, "userTeams": userFollowedTeams })
+        
+        return res.status(200).json({ "userCourses": userOwnedCourses, "userTeams": userFollowedTeams, "userInformation" : userInformation })
         
 
     } 
     catch (err) {
+        console.log("BAD: ", err)
         next(err)
     }
 })
