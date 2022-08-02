@@ -21,7 +21,7 @@ router.get("/", async (req, res, next) => {
 })
 
 //list all user created courses owned by a searched user, along with all their followed sports teams
-router.get("/:userName", async (req, res, next) => {
+router.post("/:userName", async (req, res, next) => {
     try {
         const { email } = req.body
         const userOwnedCourses = await Profile.listUserCoursesByUser({email})
@@ -29,7 +29,7 @@ router.get("/:userName", async (req, res, next) => {
         const userFollowedTeams = await Profile.listFollowedTeamsByUser({email})
         return res.status(200).json({ "userCourses": userOwnedCourses, "userTeams": userFollowedTeams })
         
-        return res.status(200).json(user)
+        
 
     } 
     catch (err) {
