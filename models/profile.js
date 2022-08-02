@@ -58,7 +58,8 @@ class Profile {
                 users.last_name,
                 users.location,
                 users.profile_image_url,
-                users.created_at
+                users.created_at,
+                users.email
             FROM users
             WHERE users.username=$1
         `, [username])
