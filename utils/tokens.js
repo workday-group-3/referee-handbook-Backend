@@ -32,7 +32,7 @@ const generateCryptoToken = (numBytes) => crypto.randomBytes(numBytes).toString(
 const generatePasswordResetToken = () => {
     return {
         token: generateCryptoToken(20),
-        expiresAt: newDate(Date.now() + 60 * 60 * 1000).toISOString()
+        expiresAt: new Date(Date.now() + 60 * 60 * 1000).toISOString()
     }
 }
 
