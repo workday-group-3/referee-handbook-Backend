@@ -4,9 +4,26 @@ const db = require("../db")
 
 class Profile {
 
+    static async fetchEmailFromUsername (user) {
+        const username = user.username
+
+        //return user email from username 
+        const results = await db.query(`
+            SELECT * FROM users
+            WHERE username=$1;
+        `, [username])
+
+        const email = results.rows[0].email;
+    
+        return email;
+    }
+
     static async listUserCoursesByUser(user) {
 
-        console.log("user is: ", user)
+        //checks if a user email is provided or a username. If email, set email to it, 
+        //if username, grab the email from it in another function
+        const email = 'username' in user ? await this.fetchEmailFromUsername(user) : user.email
+
         //pull all user created courses from database that the currently signed in user has created
         const results = await db.query(`
             SELECT c.sport_name,
@@ -25,7 +42,8 @@ class Profile {
                 JOIN users AS u ON u.id = c.user_id
             WHERE u.email = $1
             ORDER BY c.created_at DESC
-        `, [user.email])
+        `, [email])
+
         return results.rows
     }
 
@@ -49,6 +67,9 @@ class Profile {
         `, [user.email])
         return results.rows
     }
+
+
+    
 
 
 }
