@@ -6,6 +6,7 @@ class Profile {
 
     static async listUserCoursesByUser(user) {
 
+        console.log("user is: ", user)
         //pull all user created courses from database that the currently signed in user has created
         const results = await db.query(`
             SELECT c.sport_name,
