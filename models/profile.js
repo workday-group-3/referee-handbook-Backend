@@ -4,7 +4,25 @@ const db = require("../db")
 
 class Profile {
 
+    static async fetchEmailFromUsername (user) {
+        const username = user.username
+
+        //return user email from username 
+        const results = await db.query(`
+            SELECT * FROM users
+            WHERE username=$1;
+        `, [username])
+
+        const email = results.rows[0].email;
+    
+        return email;
+    }
+
     static async listUserCoursesByUser(user) {
+
+        //checks if a user email is provided or a username. If email, set email to it, 
+        //if username, grab the email from it in another function
+        const email = 'username' in user ? await this.fetchEmailFromUsername(user) : user.email
 
         //pull all user created courses from database that the currently signed in user has created
         const results = await db.query(`
@@ -24,12 +42,38 @@ class Profile {
                 JOIN users AS u ON u.id = c.user_id
             WHERE u.email = $1
             ORDER BY c.created_at DESC
-        `, [user.email])
+        `, [email])
+
         return results.rows
     }
 
+    static async listUserPublicInformation(user) {
+
+        const username = user.username
+
+        const results = await db.query(`
+            SELECT
+                users.username,
+                users.first_name,
+                users.last_name,
+                users.location,
+                users.profile_image_url,
+                users.created_at,
+                users.email
+            FROM users
+            WHERE users.username=$1
+        `, [username])
+
+
+        return results.rows[0]
+
+    }
 
     static async listFollowedTeamsByUser(user) {
+
+        //checks if a user email is provided or a username. If email, set email to it, 
+        //if username, grab the email from it in another function
+        const email = 'username' in user ? await this.fetchEmailFromUsername(user) : user.email
 
         //pull all user followed teams from database that are owned by the currently signed in user 
         const results = await db.query(`
@@ -45,9 +89,12 @@ class Profile {
                 JOIN users AS u ON u.id = t.user_id
             WHERE u.email = $1
             ORDER BY t.following_at DESC
-        `, [user.email])
+        `, [email])
         return results.rows
     }
+
+
+    
 
 
 }
