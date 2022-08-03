@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt")
 const db = require("../db")
 const { BCRYPT_WORK_FACTOR } = require("../config")
-
 const { UnauthorizedError, BadRequestError } = require("../utils/errors")
 
 class User {
@@ -61,12 +60,26 @@ class User {
             throw new BadRequestError("Invalid email.")
         }
 
+        //checking for any fields exceeding character limits set in database
+        requiredFields.forEach(field => {
+            if(credentials[field].length > 250) {
+                throw new BadRequestError(`${field} exceeds maximum character length.`)
+            }
+        })
         //make sure no duplicates exist with same email in db
         //throw err if yes
-        const existingUser = await User.fetchUserByEmail(credentials.email)
-        if (existingUser) {
+        const existingUserEmail = await User.fetchUserByEmail(credentials.email)
+        if (existingUserEmail) {
             throw new BadRequestError(`Duplicate email: ${credentials.email}`)
-        }        
+        }
+
+        //make sure no duplicates exist with same username in db
+        //throw err if yes
+        const existingUserUsername = await User.fetchUserByUsername(credentials.username)
+        if (existingUserUsername) {
+            throw new BadRequestError(`Duplicate username: ${credentials.username}`)
+        }  
+
         const lowercasedEmail = credentials.email.toLowerCase()
         //take users pass, hash it
         const hashedPassword = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
@@ -108,6 +121,61 @@ class User {
         const result = await db.query(query, [email.toLowerCase()])
         const user = result.rows[0]
         return user
+    }
+
+    static async fetchUserByUsername(username){
+        if (!username){
+            throw new BadRequestError("No username provided")
+        }
+        const query = `SELECT * FROM users WHERE username = $1`
+        const result = await db.query(query, [username.toLowerCase()])
+        const user = result.rows[0]
+        return user
+    }
+
+
+
+
+    static async savePasswordResetToken(email, resetToken) {
+        const result = await db.query(`
+        
+            UPDATE users
+            SET pw_reset_token = $1,
+                pw_reset_token_exp = $2
+            WHERE email = $3
+            RETURNING id, email, username, created_at;
+        `,
+        [resetToken.token, resetToken.expiresAt, email])
+        const user = result.rows[0]
+
+        return user;
+    }
+
+
+
+    static async resetPassword(token, newPassword) {
+
+        if(!newPassword) {
+            throw new BadRequestError("No password provided.")
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, BCRYPT_WORK_FACTOR)
+        const result = await db.query (`
+            UPDATE users
+            SET password = $1,
+                pw_reset_token = NULL,
+                pw_reset_token_exp = NULL
+            WHERE pw_reset_token = $2 AND pw_reset_token_exp > NOW()
+            RETURNING id, email, username, created_at;
+        `, [hashedPassword, token])
+
+        const user = result.rows[0]
+
+        if (user) {
+            return user;
+        }
+
+        throw new BadRequestError("That token is either expired or invalid.")
     }
 
 }
