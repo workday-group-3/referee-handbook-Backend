@@ -16,7 +16,7 @@ CREATE TABLE users (
 
 
 
--------------------  CREATE AND SEED BEGINNER COURSES ----------------------
+-------------------  CREATE BEGINNER COURSES ----------------------
 CREATE TABLE BeginnerCourses (
     id                          SERIAL PRIMARY KEY,
     sport_name                  VARCHAR(500) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE BeginnerCourses (
 
 
 
-------------------------CREATE AND STORE ALL USER CREATED COURSES-----------------------------------------------------
+------------------------CREATE ALL USER CREATED COURSES-----------------------------------------------------
 CREATE TABLE UserCreatedCourses (
     id                          SERIAL PRIMARY KEY,
     sport_name                  VARCHAR(5000) NOT NULL,
@@ -48,9 +48,20 @@ CREATE TABLE UserCreatedCourses (
 );
 
 
+----------------------------CREATE RATINGS TO STORE A RATING FROM EACH USER FOR A SPECIFIC USER CREATED COURSE-----------
+CREATE TABLE ratings (
+    rating INTEGER NOT NULL CHECK (rating > 0 AND rating <= 5),
+    course_id INTEGER NOT NULL REFERENCES UserCreatedCourses(id) ON DELETE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (course_id, user_id)
 
 
-------------------------CREATE AND STORE ALL USER FOLLOWING ACTIVITY-----------------------------------------------------
+
+);
+
+
+------------------------CREATE ALL USER FOLLOWING ACTIVITY-----------------------------------------------------
 CREATE TABLE UsersFollowingTeam (
     id                          SERIAL PRIMARY KEY,
     team_name                   VARCHAR(250) NOT NULL,
@@ -77,7 +88,7 @@ CREATE TABLE UsersFollowingTeam (
 
 
 
-
+---------------SEED ALL BEGINNER COURSE DATA--------------------
 
 INSERT INTO BeginnerCourses (id, sport_name, beginner_history_timeline, beginner_rules, beginner_short_description, beginner_cover_image_URL, beginner_tutorial_video_URL, beginner_field_diagram_URL)
 VALUES (1, 
