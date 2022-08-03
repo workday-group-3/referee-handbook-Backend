@@ -34,7 +34,6 @@ router.get("/:username", async (req, res, next) => {
 
     } 
     catch (err) {
-        console.log("BAD: ", err)
         next(err)
     }
 })
