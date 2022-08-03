@@ -164,11 +164,16 @@ class Learning {
                 c.course_tips_tricks,
                 c.difficulty,
                 c.created_at,
+                AVG(r.rating) AS "rating",
+                COUNT(r.rating) AS "totalRatings",
                 u.username,
+                u.email,
                 u.profile_image_URL
             FROM UserCreatedCourses AS c
-                JOIN users AS u ON u.id = c.user_id
-            WHERE c.sport_name = $1 
+                LEFT JOIN users AS u ON u.id = c.user_id
+                LEFT JOIN ratings AS r ON r.course_id = c.id
+            WHERE c.sport_name = $1
+            GROUP BY c.id, u.username, u.email, u.profile_image_URL
             ORDER BY c.created_at DESC
         `, [sportname])
         return results.rows
@@ -177,7 +182,7 @@ class Learning {
 
 
 
-    static async listUserCourseById({sportname, courseId, user}) {
+    static async listUserCourseById({courseId}) {
 
         //pull all user created courses from database that matches courseId
         const results = await db.query(`
@@ -191,11 +196,16 @@ class Learning {
                 c.course_tips_tricks,
                 c.difficulty,
                 c.created_at,
-                u.username
+                AVG(r.rating) AS "rating",
+                COUNT(r.rating) AS "totalRatings",
+                u.username,
+                u.email 
             FROM UserCreatedCourses AS c
-                JOIN users AS u ON u.id = c.user_id
-            WHERE c.id = $1 AND u.email = $2
-        `, [courseId, user.email])
+                LEFT JOIN users AS u ON u.id = c.user_id
+                LEFT JOIN ratings AS r ON r.course_id = c.id
+            WHERE c.id = $1
+            GROUP BY c.id, u.username, u.email
+        `, [courseId])
         return results.rows[0]
    
     }

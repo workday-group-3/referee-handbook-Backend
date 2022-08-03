@@ -1,7 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const security = require("../middleware/security")
+const permissions = require("../middleware/permissions")
 const Learning = require("../models/Learning")
+const Rating = require("../models/rating")
 
 
 //Return all beginner courses 
@@ -39,8 +41,38 @@ router.post("/:sportname", security.requireAuthenticatedUser, async (req, res, n
 })
 
 
-//Update a user created course based on a specific course id
-router.put("/:sportname/userCreated/:courseId", async (req, res, next) => {
+//Create a rating for a user created course, user must be authenticated and cannot own the course
+router.post("/:sportname/userCreated/:courseId/ratings", security.requireAuthenticatedUser, permissions.authedUserIsNotCourseOwner, async (req, res, next) => {
+    try {
+        const { courseId } = req.params
+        const { user } = res.locals
+        const rating = await Rating.createRatingForCourse({rating: req.body.rating, user, courseId})
+        return res.status(201).json({ rating })
+    }
+    catch(err) {
+        next(err)
+    }
+})
+
+
+//Update a rating for a user created course, user must be authenticated and cannot own the course
+router.put("/:sportname/userCreated/:courseId/ratings", security.requireAuthenticatedUser, permissions.authedUserIsNotCourseOwner, async (req, res, next) => {
+    try {
+        const { courseId } = req.params
+        const { user } = res.locals
+        const rating = await Rating.updateRatingForCourse({rating: req.body.rating, user, courseId})
+        return res.status(201).json({ rating })
+    }
+    catch(err) {
+        next(err)
+    }
+})
+
+
+
+
+//Update a user created course based on a specific course id, ensures user owns that course through permission middleware
+router.put("/:sportname/userCreated/:courseId", permissions.authedUserOwnsCourse, async (req, res, next) => {
     try {
 
         //edits user course based on the paramenters provided
@@ -73,15 +105,36 @@ router.get("/:sportname", async (req, res, next) => {
 router.get("/:sportname/userCreated/:courseId", async (req, res, next) => {
     try {
         // send json response back containing all information about that specific user created course
-        const { sportname, courseId } = req.params
-        const { user } = res.locals
-        const userCourse = await Learning.listUserCourseById({sportname, courseId, user})
+        const { courseId } = req.params
+        const userCourse = await Learning.listUserCourseById({courseId})
         return res.status(200).json({ userCourse })
     }
     catch(err) {
         next(err)
     }
 })
+
+
+//fetches user ratings for specific courseId, if any exist
+router.get("/:sportname/userCreated/:courseId/user", async (req, res, next) => {
+    try {
+        // send json response back containing rating information, if any by specific user & specific courseId
+        const { courseId } = req.params
+        const { user } = res.locals
+        const rating = await Rating.fetchRatingForCourseByUser({user, courseId})
+        return res.status(200).json({ rating })
+    }
+    catch(err) {
+        next(err)
+    }
+})
+
+
+
+
+
+
+
 
 //users can delete a course based on a specific course id
 router.delete("/:sportname/userCreated/:courseId", async (req, res, next) => {
