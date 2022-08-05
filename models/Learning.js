@@ -47,7 +47,11 @@ class Learning {
 
         requiredFields.forEach(field => {
             if (!course.hasOwnProperty(field)){
-                throw new BadRequestError(`Missing ${field} field.`)
+                let splitField;
+                field === "coverImageURL" ? splitField = "coverImageUrl".split(/(?=[A-Z])/) : splitField = field.split(/(?=[A-Z])/) 
+                let newField = (splitField.join(" ")).toLowerCase()
+                throw new BadRequestError(`Missing ${newField} field.`)
+  
             }
         })
 
@@ -66,7 +70,7 @@ class Learning {
 
         
         if (course.tutorialVideoURL != '' && course.tutorialVideoURL != undefined && !acceptableFormat) {
-            throw new BadRequestError(`Invalid YouTube Url`)
+            throw new BadRequestError(`Invalid YouTube URL`)
         }
 
 
@@ -111,7 +115,10 @@ class Learning {
 
         requiredFields.forEach(field => {
             if (!course.hasOwnProperty(field)){
-                throw new BadRequestError(`Missing ${field} field.`)
+                let splitField;
+                field === "coverImageURL" ? splitField = "coverImageUrl".split(/(?=[A-Z])/) : splitField = field.split(/(?=[A-Z])/) 
+                let newField = (splitField.join(" ")).toLowerCase()
+                throw new BadRequestError(`Missing ${newField} field.`)
             }
         })
 
