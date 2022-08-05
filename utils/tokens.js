@@ -26,7 +26,7 @@ const validateToken = (token) => {
 
     }
 }
-
+//creating token for pw reset
 const generateCryptoToken = (numBytes) => crypto.randomBytes(numBytes).toString("hex")
 
 const generatePasswordResetToken = () => {
