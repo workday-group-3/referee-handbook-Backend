@@ -52,7 +52,9 @@ class User {
         const requiredFields = ["email", "username", "location", "firstName", "lastName",  "password", "confirmPassword"]
         requiredFields.forEach(field => {
             if (!credentials.hasOwnProperty(field)) {
-                throw new BadRequestError(`Missing ${field} field.`)
+                let splitField = field.split(/(?=[A-Z])/)
+                let newField = (splitField.join(" ")).toLowerCase()
+                throw new BadRequestError(`Missing ${newField} field.`)
             }
         })
 

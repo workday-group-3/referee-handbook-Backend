@@ -98,7 +98,7 @@ router.get("/:sportName/recentGame", async(req, res, next) =>{
 
             // set the updated game
             if(json.data.response.length != 0){
-                redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games[filtered_games.length - 1]), 'EX', 60)
+                redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games[filtered_games.length - 1]), 'EX', 600)
             }
             return res.status(200).json({"json": filtered_games[filtered_games.length - 1], "source": "api"})
         }
@@ -107,7 +107,7 @@ router.get("/:sportName/recentGame", async(req, res, next) =>{
         else{
             let filtered_games_others = json.data.response.filter((item)=>item.date < new Date().toISOString())
             if(json.data.response.length != 0){
-                redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games_others[filtered_games_others.length - 1]), 'EX', 90)
+                redis.set(`recentGame:${sportName}`, JSON.stringify(filtered_games_others[filtered_games_others.length - 1]), 'EX', 600)
             }
             return res.status(200).json({"json": filtered_games_others[filtered_games_others.length - 1], "source": "api", "limit": json.data.errors.rateLimit})
         }     
