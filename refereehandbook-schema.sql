@@ -206,9 +206,8 @@ VALUES (6,
 
 ----------SEED DATA INTO USERS TABLE FOR DEMO/POD SYNC PURPOSES-------------------------------
 
-INSERT INTO users (id, email, username, password, first_name, last_name, location)
-VALUES (0,
-        'doug@case.io',
+INSERT INTO users (email, username, password, first_name, last_name, location)
+VALUES ('doug@case.io',
         'dogcage',
         'pw',
         'Doug',
@@ -222,10 +221,9 @@ VALUES (0,
 
 ----------SEED DATA INTO USER CREATED COURSES FOR DEMO/POD SYNC PURPOSES-------------------------------
 
-INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
-VALUES (-2,
-        'Basketball',
-        0,
+INSERT INTO UserCreatedCourses (sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
+VALUES ('Basketball',
+        1,
         'How to Shoot Like Steph',
         'This course will teach you how to step up your game and shoot like the legendary Golden State Warriors player, Stephen Curry.',
         'https://i.ytimg.com/vi/nDMDOZW6rPs/maxresdefault.jpg',
@@ -235,10 +233,9 @@ VALUES (-2,
         'Collegiate'
         );
 
-INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
-VALUES (-1,
-        'Basketball',
-        0,
+INSERT INTO UserCreatedCourses (sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
+VALUES ('Basketball',
+        1,
         'How to Play Like Lebron',
         'This course will teach you how to take your game to the next level and start playing like legendary Lakers player, Lebron James.',
         'https://grottonetwork.com/wp-content/uploads/2019/01/how-to-play-life-like-lebron-james-plays-basketball.jpg',
@@ -248,10 +245,9 @@ VALUES (-1,
         'Professional'
         );
 
-INSERT INTO UserCreatedCourses (id, sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
-VALUES (0,
-        'Soccer',
-        0,
+INSERT INTO UserCreatedCourses (sport_name, user_id, course_title, course_short_description, course_cover_image_URL, course_content, course_tutorial_video_URL, course_tips_tricks, difficulty)
+VALUES ('Soccer',
+        1,
         'How to Dribble Like Messi',
         'This course will teach you how to dribble like the legendary Barcelona wing, Lionel Messi.',
         'https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt2b037240b3a9bfb8/60db78ae5e51ad3b1d265ab2/f929b881fd0ec7504316cd59d510677df2751c83.jpg',
