@@ -54,8 +54,7 @@ class Profile {
         const results = await db.query(`
             SELECT
                 users.username,
-                users.first_name,
-                users.last_name,
+                users.full_name,
                 users.location,
                 users.profile_image_url,
                 users.created_at,
@@ -94,7 +93,26 @@ class Profile {
     }
 
 
-    
+    static async listRatingsReceivedByUser(user) {
+        //query to receive all active ratings across all courses created by passed in user
+
+        const email = 'username' in user ? await this.fetchEmailFromUsername(user) : user.email
+
+        const results = await db.query(`
+            SELECT c.course_title,
+                   r.rating
+            FROM UserCreatedCourses AS c
+            JOIN users AS u 
+                ON u.id = c.user_id
+            JOIN ratings AS r
+                ON c.id = r.course_id
+            WHERE u.email = $1 
+            ORDER BY r.created_at
+        `, [email])
+        return results.rows
+
+
+    }
 
 
 }

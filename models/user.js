@@ -11,8 +11,7 @@ class User {
             id: user.id,
             email: user.email,
             username: user.username,
-            firstName: user.first_name,
-            lastName: user.last_name,
+            fullName: user.full_name,
             location: user.location,
             profileImageUrl: user.profile_image_url,
             createdAt: user.created_at
@@ -49,7 +48,7 @@ class User {
 
         //user submits their info
         //any field is missing then throw err
-        const requiredFields = ["email", "username", "location", "firstName", "lastName",  "password", "confirmPassword"]
+        const requiredFields = ["email", "username", "fullName", "location",   "password", "confirmPassword"]
         requiredFields.forEach(field => {
             if (!credentials.hasOwnProperty(field)) {
                 let splitField = field.split(/(?=[A-Z])/)
@@ -94,15 +93,14 @@ class User {
             email,
             username,
             password,
-            first_name,
-            last_name,
+            full_name,
             location,
             profile_image_URL
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
-        RETURNING id, email, username, password, first_name, last_name, location, profile_image_URL, created_at;
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING id, email, username, password, full_name, location, profile_image_URL, created_at;
     
-    `, [lowercasedEmail, credentials.username, hashedPassword, credentials.firstName, credentials.lastName,  credentials.location, credentials.profileImageURL])
+    `, [lowercasedEmail, credentials.username, hashedPassword, credentials.fullName,  credentials.location, credentials.profileImageURL])
 
     const user = result.rows[0]
     return User.makePublicUser(user)
