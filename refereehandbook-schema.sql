@@ -4,8 +4,7 @@ CREATE TABLE users (
     email       VARCHAR(250) NOT NULL UNIQUE CHECK(POSITION('@' IN email) > 1),
     username    VARCHAR(250) NOT NULL UNIQUE,
     password    VARCHAR(250) NOT NULL,
-    first_name  VARCHAR(250) NOT NULL,
-    last_name   VARCHAR(250) NOT NULL,
+    full_name   VARCHAR(250) NOT NULL,
     location    VARCHAR(250) NOT NULL,
     profile_image_URL VARCHAR(250),
     pw_reset_token TEXT,
@@ -105,7 +104,7 @@ VALUES (1,
             {b} The whole ball must cross the goal line for it to constitute as a goal.
             {b} For fouls committed a player could receive either a yellow or red card depending on the severity of the foul; this comes down to the referee`s discretion. The yellow is a warning and a red card is a dismissal of that player. Two yellow cards will equal one red. Once a player is sent off then they cannot be replaced.
             {b} If a ball goes out of play off an opponent in either of the side lines then it is given as a throw in. If it goes out of play off an attacking player on the base line then it is a goal kick. If it comes off a defending player it is a corner kick.', 
-        'Football (Soccer) is one of the oldest sports in the world and with that; it`s also one of the most recognised. The pinnacle of the international game comes in the form the Football World Cup.  Domestically the strongest leagues come from England (English Premier League), Spain (La Liga), Italy (Serie A) and Germany (Bundesliga). ', 
+        'Soccer, or football as it is known outside of North America, is the most popular sport in the world. So, how is it played, who plays it and many more questions are answered right here.', 
         'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80', 
         'https://www.youtube.com/embed/qknP-E-vPQ4', 
         'https://www.soccerdrive.com/sites/SoccerDrive2-0/files/soccer-field-diagram-with-lines.jpg' );
@@ -122,7 +121,7 @@ VALUES (2,
             {b} After each successful basket the ball is then turned over to the opposition.
             {b} Fouls committed throughout the game will be accumulated and then when reached a certain number will be eventually be awarded as a free throw. A free throw involves one playerfrom the offensive team (the player fouled) to take a shot unopposed from the free throw line. Depending on where the foul was committed will depend on the number free throws a player gets.
             {b} Violations in basketball include travelling (taking more than one step without bouncing the ball), double dribble (picking the ball up dribbling, stopping then dribbling again with two hands), goaltending (a defensive player interferes with the ball travelling downwards towards the basket) and back court violation (once the ball passes the half way line the offensive team cannot take the ball back over the half way line).', 
-        'Basketball dates back as far as 1891 and since then has evolved into a sport played around the world. Many countries have adopted the game such as Russia, Great Britain, Germany, Spain and parts of Asia, but it is America where the biggest and most lucrative league in the world lives: the NBA (National Basketball Association).', 
+        'Basketball is one of the most popular sports in the world and is a fast moving game that involves a lot of variety, including shooting, dribbling, passing, rebounding, defence and much more.', 
         'https://images.unsplash.com/photo-1641133106402-cb7ab676b7bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
         'https://www.youtube.com/embed/F6VLIExnc7Q', 
         'https://www.harrodsport.com/uploads/wysiwyg/img/basketball-court-dimensions-and-markings-in-feet-720x444.png' );
@@ -139,7 +138,7 @@ VALUES (3,
             {b} A batter gets up to three strikes before getting out. A strike is deemed when a batter swings for a ball and misses it. The batter can leave the ball but, if it`s within a certain area (called the strike zone), then a strike will also be given. If four balls miss the strike zone and the batter does not swing their bat, they can walk to first base.
             {b} When on base, the batter can run to the next base at any point.
             {b} Players can be dismissed by either a strike out (referring to a batsman missing the ball three times), force out (when a player fails to make the base before the defensive player), fly out (when the ball is hit in the air and caught without it bouncing), and tag outs (where a defensive player with the ball tags the batsman with the ball all whilst they are running).', 
-        'Baseball is a sport that dates back as far as 1744 and formats of the game have been in place until the modern era today. The game is predominantly big in North America, Canada and Japan. The game is played worldwide with the pinnacle of sport coming from the World Series of Baseball. Ironically, this event is only competed by North American teams.', 
+        'Baseball is a bat-and-ball sport played between two teams of nine players who take turns batting and fielding. Baseball dates back as far as 1744 and formats of the game have been in place until the modern era today.', 
         'https://images.unsplash.com/photo-1578432014316-48b448d79d57?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
         'https://www.youtube.com/embed/I8VGW0C_GO4', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Baseball_positions.svg/2256px-Baseball_positions.svg.png' );
@@ -155,7 +154,7 @@ VALUES (4,
             {b} Players who are imposed to have committed a minor penalty will be ordered to leave the ice for two minutes and their team play with 5 players for that duration. If the opposing team score a goal within those two minutes then that player can return to the rink immediately.
             {b} A minor penalty can include tripping an opponent with their stick, holding with either their stick or hands, hooking with their stick or body checking a player without the puck.
             {b} Major penalties will result in a player being removed from the ice for up to 5 minutes. These may include fighting, inflicting serious injury on opposing players or continued minor violations.', 
-        'The origins of ice hockey date back to the 19th century in Canada where adaptations of the modern day hockey game were played in icy conditions. Since then the sport has gone on to become one of the largest in the world with the major participants originating from North America. The NHL (National Hockey League) is the largest league in the world.', 
+        'The origins of ice hockey date back to the 19th century in Canada where adaptations of the modern day hockey game were played in icy conditions.', 
         'https://images.unsplash.com/photo-1578535230289-3935f0a945f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
         'https://www.youtube.com/embed/H_70vAiyyXM', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ice_hockey_layout.svg/1200px-Ice_hockey_layout.svg.png' );
@@ -174,7 +173,7 @@ VALUES (5,
             {b} Players must not touch the net with any part of the body. If the net is said to have hit them rather than vice-versa, then this is ok.
             {b} The ball cannot travel under the net.
             {b} Players cannot reach over the net and hit the ball.', 
-        'Variations of the game volleyball have been in circulation since around 1895. The game has evolved since then and it was in 1964 where the sport entered its first Olympic games. The sport now has a global following with nations from around the world professionally competing. The pinnacle of the sport comes in the Olympic Games were the best players are often on show.',
+        'Variations of the game volleyball have been in circulation since around 1895. The game has evolved since then and entered its first Olympic games in 1964.',
         'https://images.unsplash.com/photo-1553005746-9245ba190489?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
         'https://www.youtube.com/embed/9YvP2-YbIFs', 
         'https://homenish.com/wp-content/uploads/2021/05/Indoor-Volleyball-Court-Dimensions.jpg');
@@ -193,7 +192,7 @@ VALUES (6,
             {b} Once the ball goes into touch a line out is called. Up to 7 players can enter a line out and any of these players can be lifted in order to catch the ball being thrown in. Both teams can compete to win the ball.
             {b} A successful conversion, penalty or kick at goal only occurs when the player manages to kick the ball through the top section of the goal. If a player is unsuccessful the ball is still in play until it crosses one of the playing fields boundaries.
             {b} Attacking players must remain behind the ball whilst active or run the risk of being called offside. Players not interfering with play can be in front of ball but must get back behind the ball before then again interfering with play.', 
-        'Rugby is one of the most physical of sports. Internationally the pinnacle of the sport lies in the Rugby World Cup. Other tournaments such as the Tri Nations (including South Africa, New Zealand and Australia), Six Nations (including England, Ireland, Scotland, Wales, Italy and France) and the Heineken Cup are other tournaments which are held in high esteem throughout.', 
+        'Rugby is one of the most physical of sports and internationally the pinnacle of the sport lies in the Rugby World Cup.', 
         'https://images.unsplash.com/photo-1574618471715-61c6b64aaf31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
         'https://www.youtube.com/embed/F22A_V77Tic', 
         'https://i0.wp.com/texasrugbyunion.com/wp-content/uploads/2015/09/Technical-Zones-Diagram-rugby-field.png?ssl=1' );
@@ -206,12 +205,11 @@ VALUES (6,
 
 ----------SEED DATA INTO USERS TABLE FOR DEMO/POD SYNC PURPOSES-------------------------------
 
-INSERT INTO users (email, username, password, first_name, last_name, location)
+INSERT INTO users (email, username, password, full_name, location)
 VALUES ('doug@case.io',
         'dogcage',
         'pw',
-        'Doug',
-        'Case',
+        'Doug Case',
         'Pleasanton, CA');
 
 

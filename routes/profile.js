@@ -13,7 +13,8 @@ router.get("/", async (req, res, next) => {
         const { user } = res.locals
         const userOwnedCourses = await Profile.listUserCoursesByUser(user)
         const userFollowedTeams = await Profile.listFollowedTeamsByUser(user)
-        return res.status(200).json({ "userCourses": userOwnedCourses, "userTeams": userFollowedTeams })
+        const userReceivedRatings = await Profile.listRatingsReceivedByUser(user)
+        return res.status(200).json({ "userCourses": userOwnedCourses, "userTeams": userFollowedTeams, "userReceivedRatings": userReceivedRatings })
     }
     catch(err) {
         next(err)
@@ -27,9 +28,10 @@ router.get("/:username", async (req, res, next) => {
         const userOwnedCourses = await Profile.listUserCoursesByUser({username})
         const userInformation = await Profile.listUserPublicInformation({username})
         const userFollowedTeams = await Profile.listFollowedTeamsByUser({username})
+        const userReceivedRatings = await Profile.listRatingsReceivedByUser({username})
 
         
-        return res.status(200).json({ "userCourses": userOwnedCourses, "userTeams": userFollowedTeams, "userInformation" : userInformation })
+        return res.status(200).json({ "userCourses": userOwnedCourses, "userTeams": userFollowedTeams, "userInformation" : userInformation, "userReceivedRatings": userReceivedRatings })
         
 
     } 
